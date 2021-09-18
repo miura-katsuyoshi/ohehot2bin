@@ -1,0 +1,16 @@
+{signal: [
+  {name: 'onehot',			wave: '===========', data: '1 2 4 8 10h 20h 40h 80h 0 55h FFh'},
+  {name: 'onehot[7]',		wave: '0......10.1'},
+  {name: 'onehot[6]',		wave: '0.....10.1.'},
+  {name: 'onehot[5]',		wave: '0....10...1'},
+  {name: 'onehot[4]',		wave: '0...10...1.'},
+  {name: 'onehot[3]',		wave: '0..10.....1'},
+  {name: 'onehot[2]',		wave: '0.10.....1.'},
+  {name: 'onehot[1]',		wave: '010.......1'},
+  {name: 'onehot[0]',		wave: '10.......1.'},
+  {name: 'bin',			wave: '=========..', data: '0 1 2 3 4 5 6 7 0'},
+  {name: 'bin[2]',	wave: '0...1...0..'},
+  {name: 'bin[1]',	wave: '0.1.0.1.0..'},
+  {name: 'bin[0]',	wave: '010101010..'},
+  {name: 'error',   wave: '0.......1..'}
+]}

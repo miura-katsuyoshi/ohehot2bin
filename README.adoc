@@ -1,0 +1,64 @@
+= Parameterized onehot encoder in SystemVerilog
+MIURA Katsuyoshi <miura.katsuyoshi@gmail.com>
+v1.0, 2021-09-18
+:toc:
+:xrefstyle: short
+:imagesdir: Images
+:homepage: https://github.com/miura-katsuyoshi/onehot2bin
+:icons: font
+
+== Description
+
+Parameterized one-hot-code to binary encoder in SystemVerilog.
+
+This is a one-hot-code to binary encoder implemented in SystemVerilog.  This circuit is combinational.  The bit width of the output _bin_ can be spefified by the parameter _WIDTH_.  The bit width of the input _onehot_ is 2^_WIDTH_^.  When the least significant bit of _onehot_ is 1 and the others are 0, _bin_ becomes 0.  When the most significant bit of _onehot_ is 1 and the others are 0, _bin_ becomes 2^_WIDTH_^-1.  When _onehot_ is not one-hot-code, _error_ becomes 1 and _bin_ becomes 0.
+
+== Input/Output
+
+[cols="1,1,1,1,3"]
+|===
+|Name |Direction |Width |Polarity |Description
+
+|onehot |input |2^_WIDTH_^ |positive |onehot code
+|bin |output |WIDTH |- |binary code
+|error |output |1 |positive |error (_onehot_ is not one-hot-code)
+|===
+
+== Parameter
+
+[cols="1,1,1,1,3"]
+|===
+|Name |Type |Width |Default value |Description
+
+|WIDTH | int | 32 |4 |The bit width of _bin_.
+|===
+
+WARNING: WIDTH is not bit width of input _onehot_, but that of output _bin_.
+
+== Timing-chart
+
+A timing-chart of 8-bit one-hot-code to 3-bit binary encoder is shown in <<fig:timing_chart>>.
+
+[[fig:timing_chart]]
+.A timing-chart of 8-bit one-hot-code to 3-bit binary encoder.
+image::timing_chart.svg[]
+
+== Instantiation
+
+    onehot2binary #(
+        .WIDTH(3)
+    )
+    onehot2binary(
+        .onehot(onehot_signal),
+        .bin(bin_wire),
+        .error(error_wire)
+    );
+
+== Test
+
+A testbench based on https://vunit.github.io/[VUnit] is included in this repository.  Execute the script _run.py_ with python interpreter.  How to run the script is depending on your system.
+
+ $ ./run.py
+ $ python run.py
+ $ python3 run.py
+ $ py run.py
